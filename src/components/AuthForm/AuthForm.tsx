@@ -4,7 +4,7 @@ import Button from '../Button';
 import RadioButton from '../RadioButton';
 import TextField from '../TextField';
 import { HandleChangeProps } from '../TextField/types';
-import { checkErrors, fieldPaparmsToFieldValues } from './utils';
+import { hasErrors, fieldPaparmsToFieldValues } from './utils';
 import { AuthFormType, FieldParams } from './types';
 import styles from './AuthForm.module.scss';
 
@@ -30,11 +30,13 @@ const AuthForm: FC<AuthFormProps> = ({ onSubmit, fields, type }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    checkErrors({
+    const isInvalid = hasErrors({
       fieldValues,
       fields,
       cb: (currentErrors) => setErrors(currentErrors),
     });
+
+    if (isInvalid) return;
 
     onSubmit(fieldValues);
   };

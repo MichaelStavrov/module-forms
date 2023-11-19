@@ -19,20 +19,20 @@ interface CheckErrorsProps {
   cb: (currentErrors: Record<string, string>) => void;
 }
 
-export const checkErrors = ({ fieldValues, fields, cb }: CheckErrorsProps) => {
+export const hasErrors = ({ fieldValues, fields, cb }: CheckErrorsProps) => {
   const currentErrors: Record<string, string> = {};
-  if (
-    Object.entries(fieldValues).filter(([key, value]) => {
-      const currentField = fields.find((field) => field.name === key);
 
-      if (currentField?.required && !value) {
-        currentErrors[key] = currentField.errorMessage ?? '';
-        return true;
-      }
-      return false;
-    })
-  ) {
-    cb(currentErrors);
-    return;
-  }
+  const errors = Object.entries(fieldValues).filter(([key, value]) => {
+    const currentField = fields.find((field) => field.name === key);
+
+    if (currentField?.required && !value) {
+      currentErrors[key] = currentField.errorMessage ?? '';
+      return true;
+    }
+    return false;
+  });
+
+  cb(currentErrors);
+
+  return errors.length > 0;
 };
