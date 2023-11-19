@@ -1,10 +1,13 @@
-.app {
+.form {
   width: 100%;
-  height: 100%;
-  padding: 60px 40px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 16px;
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 40px;
 }
