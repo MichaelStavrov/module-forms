@@ -3,11 +3,11 @@ import React, { FC } from 'react';
 import AuthForm from '../../components/AuthForm';
 import { signInFields } from '../../utils/fields';
 
-interface SignUpProps {
+interface SignInpProps {
   onSubmit: (values: Record<string, string>) => void;
 }
 
-const SignIn: FC<SignUpProps> = ({ onSubmit }) => {
+const SignIn: FC<SignInpProps> = ({ onSubmit }) => {
   return <AuthForm onSubmit={onSubmit} fields={signInFields} type='signIn' />;
 };
 
